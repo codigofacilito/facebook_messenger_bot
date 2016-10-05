@@ -1,0 +1,59 @@
+[
+	{
+		"title" : "Mensaje de bienvenida",
+		"content" : "Hola usuario me complace anunciarte que hemos registrados tus datos correctamente!",
+		"context" : "welcome",
+		"type" : "common",
+		"order" : 3,
+		"type_message" : "text_message"
+	},
+	{
+		"title" : "Presentación",
+		"content" : "Mi nombre es botFacilito, espero nos llevemos bien a lo largo del curso!",
+		"context" : "welcome",
+		"type" : "common",
+		"order" : 2,
+		"type_message" : "text_message"
+	},
+	{
+		"title" : "Obtener info",
+		"content" : "Antes de comenzar necesito recabar cierta información, espero no te moleste",
+		"context" : "welcome",
+		"type" : "common",
+		"order" : 1,
+		"type_message" : "text_message"
+	},
+	{
+		"title" : "obtener preferencias",
+		"content" : "¿De qué te gustaría que habláramos?",
+		"context" : "welcome",
+		"type" : "common",
+		"order" : 4,
+		"identifier" : "set_preference",
+		"type_message" : "quick_replies",
+		"replies" : [
+			{
+				"title" : "Clima",
+				"payload" : "CLIMA"
+			},
+			{
+				"title" : "Musica",
+				"payload" : "CLIMA"
+			},
+			{
+				"title" : "Libros",
+				"payload" : "CLIMA"
+			},
+			{
+				"title" : "Cine",
+				"payload" : "CLIMA"
+			},
+			{
+				"title" : "Nada",
+				"payload" : "NADA"
+			}
+		]
+	}
+
+
+]
