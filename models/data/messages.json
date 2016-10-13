@@ -1,10 +1,11 @@
 [
 	{
 		"title" : "Mensaje de bienvenida",
-		"content" : "Hola usuario me complace anunciarte que hemos registrados tus datos correctamente!",
+		"content" : "Hola usuario {first_name} me complace anunciarte que hemos registrados tus datos correctamente!",
 		"context" : "welcome",
 		"type" : "common",
 		"order" : 3,
+		"format" : true,
 		"type_message" : "text_message"
 	},
 	{
@@ -34,26 +35,63 @@
 		"replies" : [
 			{
 				"title" : "Clima",
-				"payload" : "CLIMA"
-			},
-			{
-				"title" : "Musica",
-				"payload" : "CLIMA"
-			},
-			{
-				"title" : "Libros",
-				"payload" : "CLIMA"
-			},
-			{
-				"title" : "Cine",
-				"payload" : "CLIMA"
+				"payload" : "WEATHER"
 			},
 			{
 				"title" : "Nada",
 				"payload" : "NADA"
 			}
 		]
+	},
+	{
+		"title" : "WEATHER",
+		"content" : "El clima es un buen tema para comenzar!",
+		"type" : "quick_replies",
+		"context" : "WEATHER",
+		"order" : 1,
+		"type_message" : "text_message"
+	},
+	{
+		"title" : "WEATHER",
+		"content" : "Te comento que puedo indicarte el clima siempre y cuando me pases tu localización",
+		"type" : "quick_replies",
+		"context" : "WEATHER",
+		"order" : 2,
+		"type_message" : "text_message"
+	},
+	{
+		"title" : "WEATHER",
+		"content" : "hagamos una prueba, selecciona tu localización",
+		"type" : "quick_replies",
+		"context" : "WEATHER",
+		"order" : 3,
+		"type_message" : "quick_replies_location"
+	},
+	{
+		"title" : "NADA",
+		"content" : "opps! ¿entonces de que hablamos?",
+		"type" : "quick_replies",
+		"context" : "NADA",
+		"order" : 1,
+		"type_message" : "text_message"
+	},
+	{
+		"title" : "Clima info",
+		"content" : "Actualmente {city} se encuentra a {temperature} grados centigrados.",
+		"context" : "temperature",
+		"type" : "specific",
+		"order" : 1,
+		"format" : true,
+		"data_model": true,
+		"type_message" : "text_message"
+	},
+	{
+		"title" : "Clima completado",
+		"content" : "Ahora que ya sabes como funciona el clima en este bot, puedes hacerlo las veces que quieras :D",
+		"type" : "Done",
+		"context" : "location",
+		"order" : 1,
+		"type_message" : "text_message"
 	}
-
-
+	
 ]

@@ -24,7 +24,7 @@ def webhook():
 		for page_entry in data['entry']:
 			for message_event in page_entry['messaging']:
 				if 'message' in message_event:
-					recived_message( message_event , app.config['PAGE_ACCESS_TOKEN'] )
+					recived_message( message_event , app.config['PAGE_ACCESS_TOKEN'], app.config['USER_GEONAMES'] )
 					
 		return "ok"
 
