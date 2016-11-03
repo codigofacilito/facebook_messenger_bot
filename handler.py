@@ -10,6 +10,7 @@ from data_structs import create_text_message
 from data_structs import create_quick_replies
 from data_structs import create_quick_replies_location
 from data_structs import create_typing_message
+from data_structs import create_template_message
 
 global_token = ''
 global_username = ''
@@ -28,13 +29,23 @@ def recived_message(event, token, username):
 
 def handler_action(sender_id, message):
 	user = UserModel.find( user_id = sender_id )
-	validate_quick_replies(user, message)
 
 	if user is not None:
-		pass
-
+		try_send_message(user, message)
 	else:
 		first_step(sender_id)
+
+def try_send_message(user, message):
+	validate_quick_replies(user, message)
+	
+	if 'ayuda' in message['text']:
+		send_loop_messages(user, type_message='help', context = 'help')
+	elif 'contacto desarrollador' in message['text']:
+		send_loop_messages(user, type_message='develop', context='develop')
+	else:
+		send_loop_messages(user, type_message='not_found', context='not_found')		
+
+
 
 def validate_quick_replies(user, message):
 	quick_reply = message.get('quick_reply', {})
@@ -78,7 +89,6 @@ def first_step(sender_id):
 def send_loop_messages(user, type_message = '', context = '', data_model = {} ):
 	messages = MessageModel.find_by_order(type = type_message, context = context )
 	for message in messages:
-
 		send_messages(user, message, data_model)
 	
 def send_messages(user, message, data_model ):
@@ -100,6 +110,10 @@ def get_message_data(user, message, data_model = {} ):
 
 	elif type_message == 'quick_replies_location':
 		return create_quick_replies_location(user, message)
+
+	elif type_message == 'template':
+		return create_template_message(user, message)
+
 	
 def add_user_location(user, lat, lng):
 	data_model = call_geoname_API(lat, lng)

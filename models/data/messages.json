@@ -92,6 +92,60 @@
 		"context" : "location",
 		"order" : 1,
 		"type_message" : "text_message"
+	},
+	{
+		"title" : "Ayuda",
+		"content" : "Si necesitas contactar con el desarrollado escribe 'contacto desarrollador'",
+		"type" : "help",
+		"context" : "help",
+		"order" : 1,
+		"type_message" : "text_message"
+	},
+	{
+		"title" : "Conctato con el desarrollador",
+		"content" : "Contacto",
+		"type" : "develop",
+		"context" : "develop",
+		"order" : 1,
+		"type_message" : "template",
+		"template_type": "generic",
+		"elements": [
+									{
+				            "title": "Eduardo García",
+				            "subtitle": "Redes sociales",
+				            "item_url": "https://codigofacilito.com/usuarios/8639",
+				            "image_url": "http://graph.facebook.com/100013580942529/picture?type=large",
+				            "buttons": [
+					            {
+					              "type": "web_url",
+					              "url": "https://www.facebook.com/Eduardo.Ismael.GP",
+					              "title": "Facebook"
+					            },
+					            {
+					              "type": "web_url",
+					              "url": "https://twitter.com/eduardo_gpg",
+					              "title": "Twitter"
+					            }
+					          ]
+					        }
+
+          	]
+	},
+	{
+		"title" : "Ayuda",
+		"content" : "No dudes en contactarnos 🐈 🍉 🍣",
+		"type" : "develop",
+		"context" : "develop",
+		"order" : 2,
+		"type_message" : "text_message"
+	},
+	{
+		"title" : "Mensaje no encontrado",
+		"content" : "Lo siento no puedo comprende lo que dices!",
+		"context" : "not_found",
+		"type" : "not_found",
+		"order" : 1,
+		"type_message" : "text_message"
 	}
-	
+
 ]
