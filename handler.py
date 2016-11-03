@@ -5,6 +5,8 @@ from models import MessageModel
 import requests
 import json
 import datetime
+import threading
+import time
 
 from data_structs import create_text_message
 from data_structs import create_quick_replies
@@ -14,6 +16,7 @@ from data_structs import create_template_message
 
 global_token = ''
 global_username = ''
+MAX_TIME = 2
 
 def recived_message(event, token, username):
 	sender_id = event['sender']['id']
@@ -37,14 +40,29 @@ def handler_action(sender_id, message):
 
 def try_send_message(user, message):
 	validate_quick_replies(user, message)
+	flag = check_last_connection(user)
 	
 	if 'ayuda' in message['text']:
 		send_loop_messages(user, type_message='help', context = 'help')
 	elif 'contacto desarrollador' in message['text']:
 		send_loop_messages(user, type_message='develop', context='develop')
 	else:
-		send_loop_messages(user, type_message='not_found', context='not_found')
+		if not flag:
+			send_loop_messages(user, type_message='not_found', context='not_found')
 
+def check_last_connection(user):
+	flag = False
+	now = datetime.datetime.now()
+	last_message = user.get('last_message', now)
+
+	if (now - last_message).seconds >= MAX_TIME:
+		flag = True
+		programming_message(user)
+		send_loop_messages(user, type_message='specific', context = 'return_user')
+
+	user['last_message'] = now
+	save_user_async(user)
+	return flag
 
 def validate_quick_replies(user, message):
 	quick_reply = message.get('quick_reply', {})
@@ -82,7 +100,7 @@ def set_user_reply(user, quick_reply):
 
 def first_step(sender_id):
 	data = call_user_API(sender_id)
-	user = UserModel.new(first_name = data['first_name'], last_name = data['last_name'], gender = data['gender'], user_id = sender_id )
+	user = UserModel.new(first_name = data['first_name'], last_name = data['last_name'], gender = data['gender'], user_id = sender_id, created_at = datetime.datetime.now() )
 	send_loop_messages(user, 'common', 'welcome' )
 
 def send_loop_messages(user, type_message = '', context = '', data_model = {} ):
@@ -96,7 +114,6 @@ def send_messages(user, message, data_model ):
 
 	call_send_API(typing)
 	call_send_API(message)
-
 
 def get_message_data(user, message, data_model = {} ):
 	type_message = message['type_message']
@@ -113,7 +130,6 @@ def get_message_data(user, message, data_model = {} ):
 	elif type_message == 'template':
 		return create_template_message(user, message)
 
-	
 def add_user_location(user, lat, lng):
 	data_model = call_geoname_API(lat, lng)
 
@@ -144,8 +160,7 @@ def call_geoname_API(lat, lng):
 
 		city = res['weatherObservation']['stationName']
 		temperature = res['weatherObservation']['temperature']
-		return {'city': city, 'temperature': temperature}
-		
+		return {'city': city, 'temperature': temperature}		
 
 def call_send_API( data ):
 	res = requests.post('https://graph.facebook.com/v2.6/me/messages',
@@ -162,6 +177,28 @@ def call_user_API(user_id ):
 
 	data = json.loads(res.text)
 	return data
+
+def save_user_async(user):
+	def async_method(user):
+		UserModel.save(user)
+
+	async = threading.Thread(name='async_method', target= async_method, args=(user, ))
+	async.start()
+
+def programming_message(user):
+	def send_reaminer(user):
+		today = datetime.datetime.today()
+		future = datetime.datetime( today.year, today.month, today.day, 13, 21 )
+		
+		seconds = (future - today).seconds
+		print seconds
+
+		time.sleep( (future - today).seconds )
+		send_loop_messages(user, type_message='remainer', context= 'remainer')
+
+	message = threading.Thread(name='send_reaminer', target= send_reaminer, 
+														args=(user, ))
+	message.start()
 
 
 

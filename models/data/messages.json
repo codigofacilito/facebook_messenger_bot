@@ -141,9 +141,26 @@
 	},
 	{
 		"title" : "Mensaje no encontrado",
-		"content" : "Lo siento, no puedo comprende lo que dices!",
+		"content" : "Lo siento, no puedo comprender lo que dices!",
 		"context" : "not_found",
 		"type" : "not_found",
+		"order" : 1,
+		"type_message" : "text_message"
+	},
+	{
+		"title" : "Regreso",
+		"content" : "Hola {first_name} es bueno tenerte de regreso :D",
+		"context" : "return_user",
+		"type" : "specific",
+		"order" : 1,
+		"format" : true,
+		"type_message" : "text_message"
+	},
+	{
+		"title" : "Mensaje no encontrado",
+		"content" : "Recuerda que siempre podrás hablar con migo!",
+		"context" : "remainer",
+		"type" : "remainer",
 		"order" : 1,
 		"type_message" : "text_message"
 	}
