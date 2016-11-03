@@ -43,8 +43,7 @@ def try_send_message(user, message):
 	elif 'contacto desarrollador' in message['text']:
 		send_loop_messages(user, type_message='develop', context='develop')
 	else:
-		send_loop_messages(user, type_message='not_found', context='not_found')		
-
+		send_loop_messages(user, type_message='not_found', context='not_found')
 
 
 def validate_quick_replies(user, message):

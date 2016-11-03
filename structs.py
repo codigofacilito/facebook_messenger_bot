@@ -45,13 +45,18 @@ def quick_replies_location(recipient_id, title):
 	}
 	return message_data
 
-def button_item_template_message(title, payload):
+def button_item_template_message(title, url):
+    button = {  "type": "web_url",
+                "title": title,
+                "url": url }
+    return button
+
+def button_item_template_message_postback(title, payload):
     button = {  "type": "postback",
                 "title": title,
                 "payload": payload }
     return button
-
-
+ 
 def element_template_message(title, subtitle, item_url, image_url, buttons):
 	item = { 
 	    "title": title,

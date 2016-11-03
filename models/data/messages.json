@@ -141,7 +141,7 @@
 	},
 	{
 		"title" : "Mensaje no encontrado",
-		"content" : "Lo siento no puedo comprende lo que dices!",
+		"content" : "Lo siento, no puedo comprende lo que dices!",
 		"context" : "not_found",
 		"type" : "not_found",
 		"order" : 1,
