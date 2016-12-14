@@ -125,6 +125,11 @@
 					              "type": "web_url",
 					              "url": "https://twitter.com/eduardo_gpg",
 					              "title": "Twitter"
+					            },
+					            {
+					              "type": "postback",
+					              "payload": "PRUEBA",
+					              "title": "Boton de prueba."
 					            }
 					          ]
 					        }
@@ -163,6 +168,33 @@
 		"type" : "remainer",
 		"order" : 1,
 		"type_message" : "text_message"
+	},
+	{
+		"title" : "postback",
+		"content" : "Ahora ya se manejar los eventos postback",
+		"context" : "PRUEBA",
+		"type" : "postback",
+		"order" : 1,
+		"format" : true,
+		"type_message" : "text_message"
+	},
+	{
+		"title" : "Imagen random",
+		"content" : "",
+		"context" : "common",
+		"type" : "image",
+		"order" : 1,
+		"url": "http://i.imgur.com/T29iOcj.jpg",
+		"type_message" : "image"
+	},
+	{
+		"title" : "Video random",
+		"content" : "",
+		"context" : "common",
+		"type" : "video",
+		"order" : 1,
+		"url": "http://techslides.com/demos/sample-videos/small.mp4",
+		"type_message" : "video"
 	}
 
 ]

@@ -45,7 +45,7 @@ def quick_replies_location(recipient_id, title):
 	}
 	return message_data
 
-def button_item_template_message(title, url):
+def button_item_template_message_url(title, url):
     button = {  "type": "web_url",
                 "title": title,
                 "url": url }
@@ -83,6 +83,43 @@ def template_message_generic(recipient_id, elements):
         }
     }
 	return message_data 
+
+
+
+def image_message(recipient_id, url):
+	message_data = {
+		'recipient': { 'id': recipient_id },
+		'message': {
+			'attachment': {
+				'type': 'image',
+				'payload': {
+					'url': url
+				}
+			}
+		}
+	}
+	return message_data
+
+
+def video_message(recipient_id, url):
+	message_data = {
+		'recipient': { 'id': recipient_id },
+		'message': {
+			'attachment': {
+				'type': 'video',
+				'payload': {
+					'url': url
+				}
+			}
+		}
+	}
+	return message_data
+
+
+
+
+
+
 
 
 
