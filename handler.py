@@ -8,14 +8,7 @@ import threading
 import time
 
 from api import *
-
-from data_structs import create_text_message
-from data_structs import create_quick_replies
-from data_structs import create_quick_replies_location
-from data_structs import create_typing_message
-from data_structs import create_template_message
-from data_structs import create_image_message
-from data_structs import create_video_message
+from data import *
 
 global_token = ''
 global_username = ''
