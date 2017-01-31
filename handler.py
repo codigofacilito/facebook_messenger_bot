@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from models import UserModel
 from models import MessageModel
+from models import TopicModel
 
 import datetime
 import threading
@@ -51,6 +52,11 @@ def handler_action(sender_id, message):
 	try_send_message(user, message)
 
 def try_send_message(user, message):
+	message_lower = message['text'].lower()
+	message = TopicModel.get_data(message_lower)
+	send_loop_messages(user, type_message=message['type'], context=message['context'])
+
+def try_send_message_dos(user, message):
 	flag = False #check_last_connection(user) or validate_quick_replies(user, message)
 	
 	message_lower = message['text'].lower()
@@ -152,7 +158,6 @@ def get_message_data(user, message, data_model = {} ):
 	
 	elif type_message == 'video':
 		return create_video_message(user, message)
-
 
 def add_user_location(user, lat, lng):
 	data_model = call_geoname_API(lat, lng, global_username)

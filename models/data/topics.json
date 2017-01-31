@@ -1,0 +1,43 @@
+[
+	{
+		"title" : "Mensaje de ayuda",
+		"content" : "ayuda",
+		"message" : {
+			"context" : "help",
+			"type": "help"
+		}
+	},
+	{
+		"title" : "Mensaje de contacto con el desarrollador",
+		"content" : "contacto desarrollador",
+		"message" : {
+			"context" : "develop",
+			"type": "develop"
+		}
+	},
+	{
+		"title" : "Imagen",
+		"content" : "imagen random",
+		"message" : {
+			"context" : "common",
+			"type": "image"
+		}
+	},
+	{
+		"title" : "Video",
+		"content" : "video random",
+		"message" :{
+			"context" : "common",
+			"type": "video"
+		}
+	},
+	{
+		"title" : "Default",
+		"content" : "default",
+		"message": {
+			"context" : "not_found",
+			"type": "not_found"
+		}
+	}
+
+]

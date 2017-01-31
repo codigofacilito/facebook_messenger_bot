@@ -28,7 +28,7 @@
 		"title" : "obtener preferencias",
 		"content" : "¿De qué te gustaría que habláramos?",
 		"context" : "welcome",
-		"type" : "common",
+		"type" : "not_common",
 		"order" : 4,
 		"identifier" : "set_preference",
 		"type_message" : "quick_replies",
